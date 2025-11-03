@@ -1,7 +1,7 @@
 ![header](https://capsule-render.vercel.app/api?type=speech&color=0:FFBBE1,100:B3BFFF&=&height=260&text=Medi-Buddy&fontAlignY=43&desc=정보%20사각지대를%20해소하는%20자연어%20기반%20자율주행%20의료%20지원%20로봇&descAlignY=63&fontColor=FFFFFF&fontSize=80)
 
 # Project ABC
-<div style="display: flex; gap: 10px;">
+<div align="center" style="display: flex; gap: 10px;">
   <img src="https://github.com/user-attachments/assets/0b456738-edcd-4a86-8cf9-01ab87d6e1d6" height="630">
   <img src="https://github.com/user-attachments/assets/47b738f0-f98e-4e7a-836b-581da2bd7710" height="630">
 </div>
@@ -20,9 +20,50 @@
 * 몸도 아픈데 마음도 아프면 더 힘들어요
 * 따뜻한 마음을 배운 Medi-Buddy가 당신 옆에 있을게요
 
+<div align="center">
+  <h2>STACK</h2>
+</div>
+<div align=center> 
+<img src="https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white"/>
+<img src="https://img.shields.io/badge/ROS2-22314E?style=flat-square&logo=ros&logoColor=white"/>
+<img src="https://img.shields.io/badge/OpenAI-412991?style=flat-square&logo=openai&logoColor=white"/>
+<img src="https://img.shields.io/badge/git-F05032?style=flat-square&logo=git&logoColor=white"/>
+<img src="https://img.shields.io/badge/Jira-0052CC?style=flat-square&logo=jira&logoColor=white"/>
+</div>
+
 ## High Level Design
 
 * (프로젝트 아키텍쳐 기술, 전반적인 diagram 으로 설명을 권장)
+```mermaid
+graph TD
+    A[Start] --> B[Scan Examination Chart]
+
+    B --> C[Generate Initial Route]
+
+    C --> D[Navigate Initial Route]
+
+    D --> E[Continuous Voice Recognition]
+
+    E --> F{User Speech Detected?}
+    F -- No --> E
+    F -- Yes --> G[Intent Classification]
+
+    G --> H{Intent Type}
+    H -- Route Change --> I[Temporary Route Change]
+
+    I --> J[Navigate Temporary Route]
+
+    J --> K[Return to Original Route]
+
+    K --> D
+
+    H -- OCR Request --> L[Camera Capture & OCR Module]
+    H -- Chatbot Query --> M[Chatbot Processing Module]
+
+    L --> E
+    M --> E
+
+```
 
 ## Clone code
 
@@ -59,6 +100,7 @@ make install
 ```shell
 cd ~/xxxx
 source .venv/bin/activate
+export OPENAI_API_KEY="sk-YOUR_OPENAI_API_KEY"
 
 cd /path/to/repo/xxx/
 python demo.py -i xxx -m yyy -d zzz
